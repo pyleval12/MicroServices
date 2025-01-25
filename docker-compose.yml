@@ -1,0 +1,26 @@
+version: '3'
+networks:
+ my_network:
+   driver: bridge
+
+services:
+ orders:
+   build: ./orders
+   ports:
+     - "8003:8003"
+   networks:
+     - my_network
+
+ products:
+   build: ./products
+   ports:
+     - "8002:8002"
+   networks:
+     - my_network
+
+ users:
+   build: ./users
+   ports:
+     - "8001:8001"
+   networks:
+     - my_network

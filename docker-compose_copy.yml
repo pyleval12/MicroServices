@@ -1,0 +1,20 @@
+version: '3'  # Версия спецификации Docker Compose
+
+networks:     # Определение пользовательских сетей
+  my_network: # Имя сети
+    driver: bridge  # Тип сети (обычно bridge для локальной разработки)
+
+services:     # Определение сервисов (контейнеров)
+  service1:   # Имя сервиса
+    build: ./path  # Путь к Dockerfile
+    image: name    # Или готовый образ
+    ports:         # Проброс портов
+      - "8000:8000"
+    networks:      # Подключение к сетям
+      - my_network
+    environment:   # Переменные окружения
+      - KEY=value
+    volumes:       # Монтирование томов
+      - ./local:/container
+    depends_on:    # Зависимости от других сервисов
+      - service2
